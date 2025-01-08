@@ -430,6 +430,7 @@ const MessagesInterface: React.FC<MessagesInterfaceProps> = () => {
       <Divider type="DOUBLE" />
       <SidebarLayout
         defaultSidebarWidth={12}
+        isShowingHandle={true}
         sidebar={
           <>
             <Avatar>

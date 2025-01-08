@@ -13,7 +13,7 @@ const Card: React.FC<CardProps> = ({ children, mode, title, ...rest }) => {
   let titleElement = (
     <header className={styles.action}>
       <div className={styles.left} aria-hidden="true"></div>
-      <h2 className={styles.title}>{title}</h2>
+      {title ? <h2 className={styles.title}>{title}</h2> : null}
       <div className={styles.right} aria-hidden="true"></div>
     </header>
   );
