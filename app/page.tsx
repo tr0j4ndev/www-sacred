@@ -27,6 +27,7 @@ import ContentFluid from '@components/ContentFluid';
 import ComboBox from '@components/ComboBox';
 import DataTable from '@components/DataTable';
 import DatePicker from '@components/DatePicker';
+import DashboardRadar from '@components/examples/DashboardRadar';
 import DebugGrid from '@components/DebugGrid';
 import DefaultActionBar from '@components/page/DefaultActionBar';
 import DefaultLayout from '@components/page/DefaultLayout';
@@ -524,7 +525,7 @@ export default async function Page(props) {
         </Accordion>
 
         <Accordion defaultValue={true} title="BUTTONS">
-          Button components are essential interactive elements within SCL, facilitating actions like navigation, form submission, and command execution.
+          Button components are essential interactive elements within SRCL, facilitating actions like navigation, form submission, and command execution.
           <br />
           <br />
           <Card title="EXAMPLE">
@@ -693,6 +694,17 @@ int main() {
             <br />
             <br />
             <DatePicker year={2024} month={12} />
+          </Card>
+        </Accordion>
+
+        <Accordion defaultValue={true} title="DASHBOARD RADAR EXAMPLE">
+          The Dashboard Radar Example is a visual homage to Brian Wyvill, the creator of the iconic Nostromo interface in Alien 1979. This example using SRCL components recreates the orbital simulations that brought a sense of realism to the movie’s early scenes.
+          <br />
+          <br /> The original AOS (Alien Orbit Simulator) was inspired by the moment when the Nostromo’s crew awakens to decipher a distress signal, this adapation depicts the kind of graphical representation that could chart complex trajectories around distant planets.
+          <br />
+          <br />
+          <Card>
+            <DashboardRadar />
           </Card>
         </Accordion>
 
@@ -1320,6 +1332,7 @@ int main() {
           <br />
           <CardDouble title="QUOTES">
             <SidebarLayout
+              isShowingHandle={true}
               sidebar={
                 <>
                   “I want each of you to go through life making the most of your individuality. Like it or not, you will go out into the real world and be treated as an adult. Adults show each other no mercy. If you fail to cultivate within yourself a fight-back mentality, society will end up controlling you.” <br />

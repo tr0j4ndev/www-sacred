@@ -1,21 +1,20 @@
 'use client';
 
 import styles from '@components/SidebarLayout.module.scss';
-
 import * as React from 'react';
 
 interface SidebarLayoutProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'defaultValue'> {
   children?: React.ReactNode;
   sidebar?: React.ReactNode;
   defaultSidebarWidth?: number;
+  isShowingHandle?: boolean;
+  isReversed?: boolean;
 }
 
 const LINE_HEIGHT = 20;
 const CHARACTER_WIDTH = 9.6;
 
-// TODO(jimmylee)
-// We need to figure out how to do ArrowLeft and ArrowRight to resize
-const SidebarLayout: React.FC<SidebarLayoutProps> = ({ defaultSidebarWidth = 20, children, sidebar }) => {
+const SidebarLayout: React.FC<SidebarLayoutProps> = ({ defaultSidebarWidth = 20, children, sidebar, isShowingHandle = false, isReversed = false, ...rest }) => {
   const [sidebarWidth, setSidebarWidth] = React.useState(defaultSidebarWidth);
   const handleRef = React.useRef<HTMLDivElement>(null);
 
@@ -38,8 +37,24 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({ defaultSidebarWidth = 20,
     document.addEventListener('mouseup', onMouseUp);
   };
 
+  if (isReversed) {
+    return (
+      <div className={styles.root} {...rest}>
+        <div className={styles.content}>{children}</div>
+        <div
+          className={styles.sidebar}
+          style={{
+            width: `${sidebarWidth}ch`,
+          }}
+        >
+          {sidebar}
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className={styles.root}>
+    <div className={styles.root} {...rest}>
       <div
         className={styles.sidebar}
         style={{
@@ -48,10 +63,14 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({ defaultSidebarWidth = 20,
       >
         {sidebar}
       </div>
-      <div className={styles.handle} ref={handleRef} role="button" tabIndex={0} onMouseDown={handleMouseDown}>
-        <div className={styles.line} />
-        <div className={styles.line} />
-      </div>
+      {isShowingHandle ? (
+        <div className={styles.handle} ref={handleRef} role="button" tabIndex={0} onMouseDown={handleMouseDown} style={isShowingHandle ? {} : { width: `0.5ch` }}>
+          <>
+            <div className={styles.line} />
+            <div className={styles.line} />
+          </>
+        </div>
+      ) : null}
       <div className={styles.content}>{children}</div>
     </div>
   );

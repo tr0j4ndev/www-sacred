@@ -17,7 +17,7 @@ const Drawer: React.FC<DrawerProps> = ({ children, defaultValue = false, ...rest
       {expand ? <div className={styles.side}>{children}</div> : null}
       <div className={styles.right}>
         <button className={styles.action} onClick={() => setExpand(!expand)}>
-          {expand ? '⭢' : '⭠'}
+          {expand ? '⭠' : '⭢'}
         </button>
       </div>
     </div>
