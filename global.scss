@@ -300,6 +300,31 @@ body.theme-green {
   --theme-focused-foreground-subdued: rgba(255, 82, 243, 0.5);
 }
 
+body.theme-black-red {
+  --theme-overlay: var(--color-red-100-4);
+  --theme-background: var(--color-black-100);
+
+  --theme-background-modal: var(--color-red-70);
+  --theme-background-modal-footer: var(--color-red-80);
+  --theme-background-input: var(--color-red-50);
+  --theme-border: var(--color-red-60-3);
+  --theme-border-subdued: var(--color-red-60-1);
+  --theme-error: rgba(208, 38, 112);
+  --theme-error-subdued: rgba(208, 38, 112, 0.3);
+  --theme-primary: var(--color-gold-30);
+  --theme-success: var(--color-green-60);
+  --theme-success-subdued: var(--color-green-60-3);
+  --theme-text: var(--color-red-30);
+
+  --theme-button: var(--color-red-100);
+  --theme-button-text: var(--color-red-10);
+
+  --theme-button-foreground: var(--color-red-80);
+  --theme-button-background: var(--color-red-70);
+  --theme-focused-foreground: var(--color-gray-70);
+  --theme-focused-foreground-subdued: var(--color-gray-70-3);
+}
+
 body.font-use-berkeley-mono {
   --font-family-mono: 'TX02Mono-Regular', sans-serif;
 }
@@ -420,8 +445,19 @@ body {
   --color-neon-green-80-2: rgba(0, 159, 0, 0.2);
   --color-neon-green-80-4: rgba(0, 159, 0, 0.4);
   --color-neon-green-90: rgba(16, 107, 2, 1);
+  --color-red-100: rgba(45, 7, 9, 1);
+  --color-red-100-4: rgba(45, 7, 9, 0.4);
+  --color-red-90: rgba(82, 4, 8, 1);
+  --color-red-80: rgba(117, 14, 19, 1);
+  --color-red-70: rgba(162, 25, 31, 1);
   --color-red-60: rgba(218, 30, 40, 1);
   --color-red-60-3: rgba(218, 30, 40, 0.3);
+  --color-red-60-1: rgba(218, 30, 40, 0.1);
+  --color-red-50: rgba(250, 77, 86, 1);
+  --color-red-40: rgba(255, 131, 137, 1);
+  --color-red-30: rgba(255, 179, 184, 1);
+  --color-red-20: rgba(255, 215, 217, 1);
+  --color-red-10: rgba(255, 241, 241, 1);
   --color-white: rgba(255, 255, 255, 1);
   --color-white-1: rgba(255, 255, 255, 0.1);
   --color-white-2: rgba(255, 255, 255, 0.2);

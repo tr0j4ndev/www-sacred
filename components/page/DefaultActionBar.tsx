@@ -198,6 +198,11 @@ const DefaultActionBar: React.FC<DefaultActionBarProps> = ({ items = [] }) => {
               },
               {
                 icon: '⊹',
+                children: 'U-571 Code Red',
+                onClick: () => Utilities.onHandleThemeChange('theme-black-red'),
+              },
+              {
+                icon: '⊹',
                 children: 'Operation Safe Blue',
                 onClick: () => Utilities.onHandleThemeChange('theme-blue'),
               },
