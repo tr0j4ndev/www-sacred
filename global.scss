@@ -306,7 +306,7 @@ body.theme-black-red {
 
   --theme-background-modal: var(--color-red-70);
   --theme-background-modal-footer: var(--color-red-80);
-  --theme-background-input: var(--color-red-50);
+  --theme-background-input: var(--color-red-60);
   --theme-border: var(--color-red-60-3);
   --theme-border-subdued: var(--color-red-60-1);
   --theme-error: rgba(208, 38, 112);
@@ -317,10 +317,10 @@ body.theme-black-red {
   --theme-text: var(--color-red-30);
 
   --theme-button: var(--color-red-100);
-  --theme-button-text: var(--color-red-10);
+  --theme-button-text: var(--color-red-20);
 
   --theme-button-foreground: var(--color-red-80);
-  --theme-button-background: var(--color-red-70);
+  --theme-button-background: var(--color-red-90);
   --theme-focused-foreground: var(--color-gray-70);
   --theme-focused-foreground-subdued: var(--color-gray-70-3);
 }
