@@ -31,6 +31,7 @@ import DashboardRadar from '@components/examples/DashboardRadar';
 import DebugGrid from '@components/DebugGrid';
 import DefaultActionBar from '@components/page/DefaultActionBar';
 import DefaultLayout from '@components/page/DefaultLayout';
+import Denabase from '@components/examples/Denabase';
 import Dialog from '@components/Dialog';
 import Divider from '@components/Divider';
 import Drawer from '@components/Drawer';
@@ -706,6 +707,13 @@ int main() {
           <Card>
             <DashboardRadar />
           </Card>
+        </Accordion>
+
+        <Accordion defaultValue={true} title="DENABASE EXAMPLE">
+          The Denabase component is a tribute to the work of Territory Studio in the movie Blade Runner 2049. It draws inspiration from a DNA database containing an archive of individual DNA cards. They explored various card systems to capture a sense of physicality.
+          <br />
+          <br />
+          <Denabase />
         </Accordion>
 
         <Accordion defaultValue={true} title="DIALOG">

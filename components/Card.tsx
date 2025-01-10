@@ -9,7 +9,7 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   mode?: string | any;
 }
 
-const Card: React.FC<CardProps> = ({ children, mode, title, ...rest }) => {
+const Card: React.FC<CardProps> = ({ children, mode, title, style, ...rest }) => {
   let titleElement = (
     <header className={styles.action}>
       <div className={styles.left} aria-hidden="true"></div>
@@ -39,7 +39,7 @@ const Card: React.FC<CardProps> = ({ children, mode, title, ...rest }) => {
   }
 
   return (
-    <article className={styles.card}>
+    <article className={styles.card} style={style}>
       {titleElement}
       <section className={styles.children}>{children}</section>
     </article>
