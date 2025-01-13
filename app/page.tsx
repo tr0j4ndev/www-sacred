@@ -568,10 +568,12 @@ export default async function Page(props) {
             </Card>
           </Accordion>
           <Accordion defaultValue={true} title="CHECKMATE">
-            White is poised to deliver checkmate, leaving Black’s king with no legal moves.
+            In chess, the en passant rule allows a pawn to capture an enemy pawn that has just made a two-square advance, moving to the square it bypassed as if it had only advanced one square. This unique rule prevents a pawn from escaping capture by skipping past an opponent. In the scenario below, White uses en passant to deliver checkmate, leaving Black’s king with no legal moves.
             <br />
             <br />
-            <Card title="CHECKMATE">
+            <Card title="EN PASSANT">
+              <Chessboard board={Constants.CHESSBOARD_PRE_CHECKMATE} />
+              &nbsp;
               <Chessboard board={Constants.CHESSBOARD_CHECKMATE} />
             </Card>
           </Accordion>
