@@ -5,7 +5,10 @@
 
   position: relative;
   display: block;
-  padding: 0 1ch calc(var(--card-double-half-gutter) * var(--theme-line-height-base)) 1ch;
+  padding-top: 0;
+  padding-right: 0;
+  padding-left: 0;
+  padding-bottom: 0;
 }
 
 .children {
@@ -16,7 +19,10 @@
   border-right: var(--card-double-border-width) solid var(--theme-text);
   border-right-style: double;
   display: block;
-  padding: 10px calc(2ch - 6px) 14px calc(2ch - 6px);
+  padding-top: calc(var(--theme-line-height-base) * 0.5rem);
+  padding-left: calc(2ch - var(--card-double-border-width));
+  padding-right: calc(2ch - var(--card-double-border-width));
+  padding-bottom: calc(var(--theme-line-height-base) * 1rem - var(--card-double-border-width));
 
   overflow-x: auto;
   overflow-y: hidden;

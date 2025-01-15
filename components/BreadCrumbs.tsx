@@ -16,7 +16,7 @@ const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ items }) => {
     <nav aria-label="breadcrumb" className={styles.root}>
       {items.map((item, index) => {
         const linkElement = (
-          <a className={styles.link} href={item.url} target="_blank" tabIndex={0} role="link">
+          <a className={styles.link} href={item.url} tabIndex={0} role="link">
             {item.name}
           </a>
         );

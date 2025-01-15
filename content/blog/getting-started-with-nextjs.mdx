@@ -1,0 +1,102 @@
+---
+title: Next.js 14 入门指南
+description: 探索 Next.js 14 的新特性，包括服务器组件、服务器操作和文件系统路由
+date: '2024-03-19'
+tags: ['next.js', 'react', 'web开发']
+---
+
+# Next.js 14 说明
+
+Next.js 14 带来了许多激动人心的新特性，让我们一起来探索如何使用这些特性构建现代 Web 应用。
+
+## 服务器组件
+
+服务器组件是 Next.js 14 中最重要的特性之一。它们允许我们在服务器端渲染 React 组件，从而提供更好的性能和用户体验。
+
+```typescript
+const greeting = "Hello World";
+console.log(greeting);
+```
+
+## 服务器操作
+
+服务器操作让我们可以直接在组件中定义和使用服务器端函数：
+
+```tsx
+export default function Form() {
+  async function handleSubmit(formData: FormData) {
+    'use server'
+    // 直接在服务器上处理表单数据
+    const name = formData.get('name')
+    await saveToDatabase(name)
+  }
+
+  return (
+    <form action={handleSubmit}>
+      <input name="name" />
+      <button type="submit">提交</button>
+    </form>
+  )
+}
+```
+
+## 文件系统路由
+
+Next.js 的文件系统路由让我们可以通过创建文件夹和文件来定义路由：
+
+```
+app/
+  page.tsx          // 首页 (/)
+  about/
+    page.tsx        // 关于页面 (/about)
+  blog/
+    [slug]/
+      page.tsx      // 博客文章页面 (/blog/article-1)
+```
+
+## 性能优化
+
+Next.js 14 提供了多种性能优化方案：
+
+1. **自动代码分割**：
+```tsx
+import { lazy } from 'react'
+
+const HeavyComponent = lazy(() => import('./HeavyComponent'))
+```
+
+2. **图片优化**：
+```tsx
+import Image from 'next/image'
+
+export default function Gallery() {
+  return (
+    <Image
+      src="/photo.jpg"
+      alt="照片"
+      width={500}
+      height={300}
+      priority
+    />
+  )
+}
+```
+
+3. **字体优化**：
+```tsx
+import { Inter } from 'next/font/google'
+
+const inter = Inter({ subsets: ['latin'] })
+
+export default function Layout({ children }) {
+  return (
+    <html lang="zh-CN" className={inter.className}>
+      <body>{children}</body>
+    </html>
+  )
+}
+```
+
+## 结论
+
+Next.js 14 为现代 Web 开发提供了强大的工具集。通过合理使用这些特性，我们可以构建出性能优秀、用户体验出色的应用。 

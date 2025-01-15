@@ -44,19 +44,20 @@ export function getDomainFromEmailWithoutAnySubdomain(email: string): string {
 }
 
 export function onHandleThemeChange(className?: string) {
-  const body = document.body;
-
-  body.classList.forEach((existingClass) => {
+  const themeToApply = className || 'theme-light'
+  
+  // 移除现有主题类
+  document.body.classList.forEach((existingClass) => {
     if (existingClass.startsWith('theme-')) {
-      body.classList.remove(existingClass);
+      document.body.classList.remove(existingClass)
     }
-  });
+  })
 
-  if (className) {
-    body.classList.add(className);
-  } else {
-    body.classList.add('theme-light');
-  }
+  // 添加新主题类
+  document.body.classList.add(themeToApply)
+  
+  // 保存到 localStorage
+  localStorage.setItem('blog-theme-preference', themeToApply)
 }
 
 export function onHandleFontChange(className?: string) {

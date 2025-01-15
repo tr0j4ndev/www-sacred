@@ -1,0 +1,215 @@
+---
+title: TypeScript 最佳实践指南
+description: 探索 TypeScript 开发中的最佳实践，包括类型定义、泛型使用和性能优化
+date: '2024-03-18'
+tags: ['typescript', '编程', '最佳实践']
+---
+
+# TypeScript 最佳实践指南
+
+TypeScript 已经成为现代 Web 开发中不可或缺的工具。本文将分享一些在实际开发中总结的最佳实践。
+
+## 类型定义
+
+### 使用接口而不是类型别名
+
+在大多数情况下，优先使用接口（interface）而不是类型别名（type）：
+
+```typescript
+// 好的做法
+interface User {
+  id: number
+  name: string
+  email: string
+}
+
+// 避免使用
+type User = {
+  id: number
+  name: string
+  email: string
+}
+```
+
+### 精确的类型定义
+
+尽可能使用精确的类型，避免使用 `any`：
+
+```typescript
+// 不好的做法
+function processData(data: any) {
+  return data.someProperty
+}
+
+// 好的做法
+interface DataType {
+  someProperty: string
+}
+
+function processData(data: DataType) {
+  return data.someProperty
+}
+```
+
+## 泛型使用
+
+### 泛型约束
+
+使用泛型约束来限制类型参数：
+
+```typescript
+interface HasLength {
+  length: number
+}
+
+function logLength<T extends HasLength>(arg: T): number {
+  console.log(arg.length)
+  return arg.length
+}
+
+// 可以使用
+logLength("Hello")     // 字符串有 length 属性
+logLength([1, 2, 3])   // 数组有 length 属性
+
+// 编译错误
+logLength(123)         // 数字没有 length 属性
+```
+
+### 泛型默认值
+
+为泛型参数提供默认值：
+
+```typescript
+interface ApiResponse<T = unknown> {
+  data: T
+  status: number
+  message: string
+}
+
+// 不指定类型参数时使用 unknown
+const response: ApiResponse = {
+  data: null,
+  status: 200,
+  message: "success"
+}
+
+// 指定类型参数
+interface User {
+  id: number
+  name: string
+}
+
+const userResponse: ApiResponse<User> = {
+  data: { id: 1, name: "张三" },
+  status: 200,
+  message: "success"
+}
+```
+
+## 工具类型
+
+### 内置工具类型
+
+充分利用 TypeScript 提供的内置工具类型：
+
+```typescript
+interface User {
+  id: number
+  name: string
+  email: string
+  password: string
+}
+
+// 只读类型
+type ReadonlyUser = Readonly<User>
+
+// 部分属性
+type UserPreview = Pick<User, 'id' | 'name'>
+
+// 排除某些属性
+type PublicUser = Omit<User, 'password'>
+
+// 可选属性
+type PartialUser = Partial<User>
+```
+
+## 类型断言
+
+### as const 断言
+
+使用 `as const` 创建只读类型：
+
+```typescript
+const config = {
+  api: {
+    baseUrl: 'https://api.example.com',
+    timeout: 5000
+  },
+  theme: {
+    primary: '#007bff',
+    secondary: '#6c757d'
+  }
+} as const
+
+// config 的所有属性都是只读的
+```
+
+### 类型守卫
+
+使用类型守卫进行类型收窄：
+
+```typescript
+interface Bird {
+  fly(): void
+  layEggs(): void
+}
+
+interface Fish {
+  swim(): void
+  layEggs(): void
+}
+
+function isFish(pet: Fish | Bird): pet is Fish {
+  return (pet as Fish).swim !== undefined
+}
+
+function move(pet: Fish | Bird) {
+  if (isFish(pet)) {
+    pet.swim() // TypeScript 知道这里 pet 是 Fish
+  } else {
+    pet.fly()  // TypeScript 知道这里 pet 是 Bird
+  }
+}
+```
+
+## 性能优化
+
+### 避免过度使用泛型
+
+过度使用泛型可能会导致类型检查性能下降：
+
+```typescript
+// 不好的做法
+type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P]
+}
+
+// 好的做法：只在必要时使用深度 Partial
+type ShallowPartial<T> = Partial<T>
+```
+
+### 合理使用类型推断
+
+让 TypeScript 进行类型推断，避免不必要的类型注解：
+
+```typescript
+// 不必要的类型注解
+const numbers: number[] = [1, 2, 3]
+
+// 让 TypeScript 推断类型
+const numbers = [1, 2, 3]
+```
+
+## 结论
+
+遵循这些最佳实践可以帮助我们写出更加健壮、可维护的 TypeScript 代码。记住，TypeScript 的目标是帮助我们捕获错误，提高开发效率，而不是增加开发负担。 

@@ -9,7 +9,8 @@ import { toggleDebugGrid } from '@components/DebugGrid';
 import { useHotkeys } from '@modules/hotkeys';
 
 import ActionBar from '@components/ActionBar';
-import ButtonGroup from '@components/ButtonGroup';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 function isElement(target: EventTarget | null): target is Element {
   return target instanceof Element;
@@ -114,14 +115,25 @@ interface DefaultActionBarProps {
   }[];
 }
 
-const DefaultActionBar: React.FC<DefaultActionBarProps> = ({ items = [] }) => {
-  const [isGrid, setGrid] = React.useState(false);
-  useHotkeys('ctrl+g', () => toggleDebugGrid());
+interface ActionBarItem {
+  hotkey?: string;
+  body: React.ReactNode;
+  onClick: () => void;
+  selected?: boolean;
+  openHotkey?: string;
+  items?: ActionBarItem[];
+  icon?: string;
+  children?: React.ReactNode;
+}
 
-  useGlobalNavigationHotkeys();
+const DefaultActionBar: React.FC<DefaultActionBarProps> = ({ items = [] }) => {
+  const pathname = usePathname() ?? ''
+
+  useHotkeys('ctrl+g', () => toggleDebugGrid())
+  useGlobalNavigationHotkeys()
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root} style={{ display: 'flex', justifyContent: 'space-between', width: 'calc(100% - 32px)' }}>
       <ActionBar
         items={[
           {
@@ -218,19 +230,31 @@ const DefaultActionBar: React.FC<DefaultActionBarProps> = ({ items = [] }) => {
               },
             ],
           },
-          {
-            hotkey: '⌃+G',
-            onClick: () => {
-              toggleDebugGrid();
-            },
-            body: 'Grid',
-            selected: false,
-          },
           ...items,
         ]}
       />
+
+      <ActionBar
+        items={[
+          {
+            body: '首页',
+            onClick: () => window.location.href = '/',
+            selected: pathname === '/',
+          },
+          {
+            body: '文章',
+            onClick: () => window.location.href = '/blog',
+            selected: pathname === '/blog' || pathname.startsWith('/blog/'),
+          },
+          {
+            body: '关于',
+            onClick: () => window.location.href = '/about',
+            selected: pathname === '/about' || pathname.startsWith('/about/'),
+          },
+        ]}
+      />
     </div>
-  );
-};
+  )
+}
 
 export default DefaultActionBar;

@@ -347,9 +347,6 @@ body.font-use-sfmono-square {
   --font-family-mono: 'SFMonoSquare-Regular', sans-serif;
 }
 
-#__next {
-}
-
 html,
 body {
   --color-black-100: rgba(0, 0, 0, 1);
@@ -496,7 +493,7 @@ body {
   &::-webkit-scrollbar {
     background: transparent;
     height: calc(var(--theme-line-height-base) * 1rem);
-    width: 1ch;
+    width: 0;
   }
 
   &::-webkit-scrollbar-track {
@@ -510,4 +507,97 @@ body {
   &::-webkit-scrollbar-thumb:hover {
     background: var(--theme-border);
   }
+}
+
+
+// Blog Layout
+.blog-container {
+  max-width: 65ch;
+  padding: calc(var(--theme-line-height-base) * 2rem) 1ch;
+  margin: 0 auto;
+}
+
+.blog-content {
+  margin: 0 auto;
+  display: grid;
+  flex-direction: column;
+  gap: 1.5rem
+}
+
+.blog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: calc(var(--theme-line-height-base) * 1rem);
+
+  h1 {
+    font-size: calc(var(--theme-line-height-base) * 2rem);
+  }
+}
+
+.home-link {
+  &:hover {
+    background: var(--theme-focused-foreground);
+  }
+}
+
+.blog-posts {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--theme-line-height-base) * 2rem);
+}
+
+.blog-post {
+  padding: calc(var(--theme-line-height-base) * 1.5rem) 1ch;
+  border: 1px solid var(--theme-border);
+  border-radius: 4px;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: var(--theme-primary);
+  }
+
+  h2 {
+    font-size: calc(var(--theme-line-height-base) * 1.5rem);
+    margin-bottom: calc(var(--theme-line-height-base) * 0.5rem);
+
+    &:hover {
+      color: var(--theme-primary);
+    }
+  }
+}
+
+.post-description {
+  margin-bottom: calc(var(--theme-line-height-base) * 1rem);
+  color: var(--theme-text);
+  opacity: 0.8;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  time {
+    font-size: calc(var(--theme-line-height-base) * 0.75rem);
+    color: var(--theme-text);
+    opacity: 0.7;
+  }
+}
+
+.post-tags {
+  display: flex;
+  gap: 0.5ch;
+}
+
+.post-tag {
+  padding: calc(var(--theme-line-height-base) * 0.25rem) 1ch;
+  font-size: calc(var(--theme-line-height-base) * 0.75rem);
+  border-radius: 999px;
+  background: var(--theme-border);
+  color: var(--theme-text);
+}
+
+.header-container {
+  display: flex;
 }

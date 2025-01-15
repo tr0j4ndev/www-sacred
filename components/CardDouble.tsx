@@ -7,9 +7,10 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
   title?: string | any;
   mode?: string | any;
+  style?: any;
 }
 
-const CardDouble: React.FC<CardProps> = ({ children, mode, title, ...rest }) => {
+const CardDouble: React.FC<CardProps> = ({ children, mode, title, style, ...rest }) => {
   let titleElement = (
     <header className={styles.action}>
       <div className={styles.left} aria-hidden="true"></div>
@@ -42,7 +43,9 @@ const CardDouble: React.FC<CardProps> = ({ children, mode, title, ...rest }) => 
     <article className={styles.card}>
       {titleElement}
       <section className={styles.children}>
-        <section className={styles.borderChildren}>{children}</section>
+        <section className={styles.borderChildren} style={style}>
+          {children}
+        </section>
       </section>
     </article>
   );

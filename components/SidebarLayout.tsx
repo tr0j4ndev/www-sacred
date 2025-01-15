@@ -41,6 +41,7 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({ defaultSidebarWidth = 20,
     return (
       <div className={styles.root} {...rest}>
         <div className={styles.content}>{children}</div>
+        &nbsp;
         <div
           className={styles.sidebar}
           style={{

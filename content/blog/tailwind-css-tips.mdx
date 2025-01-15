@@ -1,0 +1,224 @@
+---
+title: Tailwind CSS 高级技巧
+description: 探索 Tailwind CSS 的高级用法，包括自定义配置、响应式设计和性能优化
+date: '2024-03-17'
+tags: ['tailwind', 'css', '前端开发']
+---
+
+# Tailwind CSS 高级技巧
+
+Tailwind CSS 是一个功能强大的 CSS 框架，通过其实用优先的特性，我们可以快速构建现代化的用户界面。
+
+## 自定义配置
+
+### 扩展主题
+
+在 `tailwind.config.js` 中自定义你的设计系统：
+
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          // ...其他色阶
+          900: '#0c4a6e',
+        },
+      },
+      spacing: {
+        '18': '4.5rem',
+        '112': '28rem',
+        '128': '32rem',
+      },
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
+    },
+  },
+}
+```
+
+### 自定义变体
+
+创建你自己的变体：
+
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  variants: {
+    extend: {
+      backgroundColor: ['active'],
+      textColor: ['visited'],
+    },
+  },
+}
+```
+
+## 响应式设计
+
+### 移动优先
+
+Tailwind 采用移动优先的方法：
+
+```jsx
+<div className="text-sm md:text-base lg:text-lg">
+  响应式文本大小
+</div>
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div>第一列</div>
+  <div>第二列</div>
+  <div>第三列</div>
+</div>
+```
+
+### 自定义断点
+
+定义你自己的断点：
+
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  theme: {
+    screens: {
+      'tablet': '640px',
+      'laptop': '1024px',
+      'desktop': '1280px',
+    },
+  },
+}
+```
+
+## 组件模式
+
+### 组合类名
+
+使用 @apply 创建可复用的组件样式：
+
+```css
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 bg-blue-500 text-white rounded-lg
+    hover:bg-blue-600 focus:outline-none focus:ring-2
+    focus:ring-blue-500 focus:ring-offset-2 transition-colors;
+  }
+  
+  .card {
+    @apply p-6 bg-white rounded-xl shadow-lg
+    hover:shadow-xl transition-shadow duration-300;
+  }
+}
+```
+
+### 动态类名
+
+使用工具函数组合类名：
+
+```tsx
+import { cn } from "@/lib/utils"
+
+function Button({ variant, className, ...props }) {
+  return (
+    <button
+      className={cn(
+        "px-4 py-2 rounded-lg",
+        {
+          "bg-blue-500 hover:bg-blue-600": variant === "primary",
+          "bg-gray-500 hover:bg-gray-600": variant === "secondary",
+        },
+        className
+      )}
+      {...props}
+    />
+  )
+}
+```
+
+## 深色模式
+
+### 系统偏好
+
+根据系统偏好切换深色模式：
+
+```html
+<html class="dark">
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <!-- 内容 -->
+  </body>
+</html>
+```
+
+### 手动切换
+
+实现手动切换深色模式：
+
+```tsx
+function ThemeToggle() {
+  const [isDark, setIsDark] = useState(false)
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark)
+  }, [isDark])
+
+  return (
+    <button
+      onClick={() => setIsDark(!isDark)}
+      className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800"
+    >
+      {isDark ? '🌞' : '🌙'}
+    </button>
+  )
+}
+```
+
+## 性能优化
+
+### 按需加载
+
+使用 PurgeCSS 移除未使用的样式：
+
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+  ],
+}
+```
+
+### JIT 模式
+
+使用即时编译模式获得更好的开发体验：
+
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  mode: 'jit',
+  // ...其他配置
+}
+```
+
+## 最佳实践
+
+1. **保持一致性**：
+   - 使用预定义的设计令牌
+   - 避免使用任意值（除非必要）
+   - 创建和复用组件模式
+
+2. **可维护性**：
+   - 使用有意义的类名组织
+   - 提取常用组件样式
+   - 保持代码整洁
+
+3. **性能**：
+   - 使用 PurgeCSS 清理未使用的样式
+   - 避免过度使用 @apply
+   - 合理使用响应式类名
+
+## 结论
+
+Tailwind CSS 不仅仅是一个 CSS 框架，它是一个完整的设计系统工具。通过合理使用这些高级特性，我们可以构建出既美观又高效的用户界面。 

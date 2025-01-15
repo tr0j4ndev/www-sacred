@@ -4,7 +4,7 @@
   justify-content: space-between;
   width: 100%;
   flex-direction: column;
-  height: calc(var(--theme-line-height-base) * (var(--font-size) * 29));
+  height: calc(var(--theme-line-height-base) * (var(--font-size) * 29.5));
 }
 
 .customTop {
@@ -18,7 +18,7 @@
 }
 
 .root {
-  min-width: 44ch;
+  min-width: 56ch;
 }
 
 .cross {

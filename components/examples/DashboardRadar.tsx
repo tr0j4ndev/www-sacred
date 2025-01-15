@@ -57,6 +57,7 @@ const DashboardRadar = (props) => {
                 CONDITION
                 <br />
                 CODE
+                <br />
                 <ActionButton style={{ width: '100%' }}>16 S=C75C</ActionButton>
                 <ActionButton>PAST=8</ActionButton>
                 <br />
@@ -86,6 +87,7 @@ const DashboardRadar = (props) => {
             </span>
           </RowSpaceBetween>
         </Card>
+        <br />
         <Card>
           <RowSpaceBetween style={{ position: 'absolute', top: 0, left: `6ch`, right: `6ch` }}>
             <RadarMarker />

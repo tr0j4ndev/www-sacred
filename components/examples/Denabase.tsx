@@ -62,6 +62,7 @@ const Denabase = (props) => {
         <br />
         <Divider type="GRADIENT" />
       </Card>
+      <br />
       <Card>
         <SidebarLayout
           sidebar={
